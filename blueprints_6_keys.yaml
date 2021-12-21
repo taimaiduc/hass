@@ -3,15 +3,14 @@ blueprint:
   description: 'Control anything using Aqara Opple six button remote'
   domain: automation
   input:
-    aeotec_nanomote:
-      name: Aeotec Quad Remotes
-      description:
+    remote:
+      name: Remote
+      description: Opple remote to use
       selector:
-          device:
-            integration: mqtt
-            manufacturer: LUMI
-            model:
-              - WXCJKG13LM
+        device:
+          integration: MQTT
+          manufacturer: LUMI
+          model: WXCJKG13LM
     
     # ---------------------------- BUTTON TOP LEFT ----------------------------
     button_top_left_single_press:
