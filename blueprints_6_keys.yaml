@@ -10,7 +10,7 @@ blueprint:
         device:
           integration: mqtt
           manufacturer: LUMI
-          model: lumi.remote.b686opcn01
+          model: lumi.remote.b486opcn01
     
     # ---------------------------- BUTTON TOP LEFT ----------------------------
     button_top_left_single_press:
