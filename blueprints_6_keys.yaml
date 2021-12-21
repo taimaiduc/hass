@@ -1,241 +1,163 @@
 blueprint:
-  name: Aqara Buttons All-In-One [Zigbee2MQTT]
-  description: |
-   All-In-One package for Aqara Switches. 
-   Supports: WXKG11LM, WXKG12LM, WXKG03LM, WXKG06LM, WXKG07LM, WXKG02LM, QBKG03LM, QBKG04LM, QBKG11LM, QBKG12LM, QBKG21LM, QBKG22LM, QBKG25LM, etc..). 
-   Does not supports Opple.
-   Some actions may be unsupported by your switch. Check the available actions of your device on zigbee2mqtt.io.
+  name: Z2M - Aqara Opple switch 3 bands
+  description: 'Control 3 lights with an Aqara Opple switch 3 bands (WXCJKG13LM).
+  
+  Inspired by the blueprint of @starbuck93 (https://community.home-assistant.io/t/zigbee2mqtt-ikea-five-button-remote/255308)
+  
+  It works very well with LED strips and Gledopto controllers (GL-C-008-1ID).
+    
+    Each band controls one light/group.
+    
+    - left short press (buttons 1, 3, 5): turn off
+    
+    - right short press (buttons 2, 4, 6): turn on
+    
+    - left long press (buttons 1, 3, 5): decrese the brightness smoothly until released
+    
+    - right short press (buttons 2, 4, 6): increse the brightness smoothly until released
+    
+    - right double press (buttons 1, 3, 5): set the warmest light (500 mired)
+    
+    - right double press (buttons 2, 4, 6): set the coldest light (153 mired)
+    
+    - triple clicks: customizable
+    
+      '
   domain: automation
   input:
-    action_sensor:
-      name: Action Sensor
-      description: Zigbee2mqtt action sensor
+    switch:
+      name: Aqara switch
+      description: Aqara switch to use
       selector:
         entity:
-          integration: mqtt
           domain: sensor
-    single_action:
-      name: Single Click
-      description: Single click for devices with one button
+    light_1:
+      name: Light(s)
+      description: The light(s) to control
+      selector:
+        target:
+          entity:
+            domain: light
+    button_2_single:
+      name: Button 2 - single click
       default: []
       selector:
         action: {}
-    double_action:
-      name: Double Click
-      description: Double click for devices with one button
-      default: []
-      selector:
-        action: {}    
-    tripple_action:
-      name: Tripple Click
-      description: Tripple click for devices with one button
-      default: []
-      selector:
-        action: {}     
-    quadruple_action:
-      name: Quadruple Click
-      description: Tripple click for devices with one button
-      default: []
-      selector:
-        action: {}       
-    hold_action:
-      name: Hold Action
-      description: Hold action for devices with one button
-      default: []
-      selector:
-        action: {}     
-    release_action:
-      name: Release Action
-      description: Release action for devices with one button
-      default: []
-      selector:
-        action: {}    
-    shake_action:
-      name: Shake Action
-      description: Shake action for devices with one button
+    button_3_single:
+      name: Button 3 - single click
       default: []
       selector:
         action: {}
-    single_left_action:
-      name: Single Left Click
-      description: Left click for devices with multiple buttons
+    button_4_single:
+      name: Button 4 - single click
       default: []
       selector:
         action: {}
-    double_left_action:
-      name: Double Left Click
-      description: Double left click for devices with multiple buttons
-      default: []
-      selector:
-        action: {}     
-    tripple_left_action:
-      name: Tripple Left Click
-      description: Tripple left click for devices with multiple buttons
-      default: []
-      selector:
-        action: {}     
-    hold_left_action:
-      name: Hold Left Action
-      description: Hold left action for devices with multiple buttons
-      default: []
-      selector:
-        action: {}    
-    release_left_action:
-      name: Release Left Action
-      description: Release left action for devices with multiple buttons
+    button_1_double:
+      name: Button 1 - double click
       default: []
       selector:
         action: {}
-    single_center_action:
-      name: Single Center Click
-      description: Center click for devices with three buttons
+    button_2_double:
+      name: Button 2 - double click
       default: []
       selector:
         action: {}
-    double_center_action:
-      name: Double Center Click
-      description: Double center click for devices with three buttons
-      default: []
-      selector:
-        action: {}     
-    tripple_center_action:
-      name: Tripple Center Click
-      description: Tripple center click for devices with three buttons
-      default: []
-      selector:
-        action: {}     
-    hold_center_action:
-      name: Hold Center Action
-      description: Hold center action for devices with three buttons
-      default: []
-      selector:
-        action: {}    
-    release_center_action:
-      name: Release Center Action
-      description: Release center action for devices with three buttons
-      default: []
-      selector:
-        action: {}      
-    single_right_action:
-      name: Single Right Click
-      description: Right click for devices with multiple buttons
+    button_1_hold:
+      name: Button 1 - hold click
       default: []
       selector:
         action: {}
-    double_right_action:
-      name: Double Right Click
-      description: Double right click for devices with multiple buttons
-      default: []
-      selector:
-        action: {}     
-    tripple_right_action:
-      name: Tripple Right Click
-      description: Tripple right click for devices with multiple buttons
-      default: []
-      selector:
-        action: {}     
-    hold_right_action:
-      name: Hold Right Action
-      description: Hold right action for devices with multiple buttons
-      default: []
-      selector:
-        action: {}    
-    release_right_action:
-      name: Release Right Action
-      description: Release right action for devices with multiple buttons
-      default: []
-      selector:
-        action: {}    
-    single_both_action:
-      name: Single Both Click
-      description: Both click for devices with multiple buttons
+    button_2_hold:
+      name: Button 2 - hold click
       default: []
       selector:
         action: {}
-    double_both_action:
-      name: Double Both Click
-      description: Double both click for devices with multiple buttons
+    button_1_triple:
+      name: Button 1 - triple click
       default: []
       selector:
-        action: {}     
-    tripple_both_action:
-      name: Tripple Both Click
-      description: Tripple both click for devices with multiple buttons
+        action: {}
+    button_2_triple:
+      name: Button 2 - triple click
       default: []
       selector:
-        action: {}     
-    hold_both_action:
-      name: Hold Both Action
-      description: Hold both action for devices with multiple buttons
+        action: {}
+    button_3_triple:
+      name: Button 3 - triple click
+      description: Action to run on triple click of button 3
       default: []
       selector:
-        action: {}    
-    release_both_action:
-      name: Release Both Action
-      description: Release both action for devices with multiple buttons
+        action: {}
+    button_4_triple:
+      name: Button 4 - triple click
+      description: Action to run on triple click of button 4
       default: []
       selector:
-        action: {}               
+        action: {}
 mode: restart
 max_exceeded: silent
 trigger:
-  platform: state
-  entity_id: !input 'action_sensor'
+- platform: state
+  entity_id: !input 'switch'
+  attribute: action
 action:
 - variables:
-    command: '{{ trigger.to_state.attributes.action if trigger.to_state.state == "" else trigger.to_state.state }}'
+    command: '{{ trigger.to_state.state }}'
 - choose:
-  - conditions: '{{ command == ''single'' }}'
-    sequence: !input 'single_action'
-  - conditions: '{{ command == ''double'' }}'
-    sequence: !input 'double_action'
-  - conditions: '{{ command == ''tripple'' }}'
-    sequence: !input 'tripple_action'
-  - conditions: '{{ command == ''quadruple'' }}'
-    sequence: !input 'quadruple_action'
-  - conditions: '{{ command == ''hold'' }}'
-    sequence: !input 'hold_action'
-  - conditions: '{{ command == ''release'' }}'
-    sequence: !input 'release_action'
-  - conditions: '{{ command == ''shake'' }}'
-    sequence: !input 'shake_action'
-  - conditions: '{{ command == ''single_left'' }}'
-    sequence: !input 'single_left_action'
-  - conditions: '{{ command == ''double_left'' }}'
-    sequence: !input 'double_left_action'
-  - conditions: '{{ command == ''tripple_left'' }}'
-    sequence: !input 'tripple_left_action'    
-  - conditions: '{{ command == ''hold_left'' }}'
-    sequence: !input 'hold_left_action' 
-  - conditions: '{{ command == ''release_left'' }}'
-    sequence: !input 'release_left_action'
-  - conditions: '{{ command == ''single_center'' }}'
-    sequence: !input 'single_center_action'
-  - conditions: '{{ command == ''double_center'' }}'
-    sequence: !input 'double_center_action'
-  - conditions: '{{ command == ''tripple_center'' }}'
-    sequence: !input 'tripple_center_action'    
-  - conditions: '{{ command == ''hold_center'' }}'
-    sequence: !input 'hold_center_action' 
-  - conditions: '{{ command == ''release_center'' }}'
-    sequence: !input 'release_center_action'    
-  - conditions: '{{ command == ''single_right'' }}'
-    sequence: !input 'single_right_action'
-  - conditions: '{{ command == ''double_right'' }}'
-    sequence: !input 'double_right_action'
-  - conditions: '{{ command == ''tripple_right'' }}'
-    sequence: !input 'tripple_right_action'    
-  - conditions: '{{ command == ''hold_right'' }}'
-    sequence: !input 'hold_right_action' 
-  - conditions: '{{ command == ''release_right'' }}'
-    sequence: !input 'release_right_action'       
-  - conditions: '{{ command == ''single_both'' }}'
-    sequence: !input 'single_both_action'
-  - conditions: '{{ command == ''double_both'' }}'
-    sequence: !input 'double_both_action'
-  - conditions: '{{ command == ''tripple_both'' }}'
-    sequence: !input 'tripple_both_action'    
-  - conditions: '{{ command == ''hold_both'' }}'
-    sequence: !input 'hold_both_action' 
-  - conditions: '{{ command == ''release_both'' }}'
-    sequence: !input 'release_both_action'
+  - conditions:
+    - '{{ command == ''button_1_single'' }}'
+    sequence:
+    - service: light.toggle
+      data: {}
+      target: !input 'light_1'
+  - conditions:
+    - '{{ command == ''button_3_hold'' }}'
+    sequence:
+    - repeat:
+        until:
+        - condition: state
+          entity_id: !input 'switch'
+          state: button_3_release
+          attribute: action
+        sequence:
+        - service: light.turn_on
+          data:
+            brightness_step_pct: -10
+            transition: 1
+          target: !input 'light_1'
+        - delay: '0.5'
+  - conditions:
+    - '{{ command == ''button_4_hold'' }}'
+    sequence:
+    - repeat:
+        until:
+        - condition: state
+          entity_id: !input 'switch'
+          state: button_4_release
+          attribute: action
+        sequence:
+        - service: light.turn_on
+          data:
+            brightness_step_pct: 10
+            transition: 1
+          target: !input 'light_1'
+        - delay: '0.5'
+  - conditions:
+    - '{{ command == ''button_3_double'' }}'
+    sequence:
+    - service: light.turn_on
+      target: !input 'light_1'
+      data:
+        color_temp: '500'
+  - conditions:
+    - '{{ command == ''button_4_double'' }}'
+    sequence:
+    - service: light.turn_on
+      target: !input 'light_1'
+      data:
+        color_temp: '153'
+
+
+
+      
