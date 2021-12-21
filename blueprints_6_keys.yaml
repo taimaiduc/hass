@@ -8,8 +8,8 @@ blueprint:
       description: Opple remote to use
       selector:
         device:
-          integration: MQTT
-          manufacturer: LUMI
+          integration: mqtt
+          manufacturer: Xiaomi
           model: lumi.remote.b686opcn01
     
     # ---------------------------- BUTTON TOP LEFT ----------------------------
