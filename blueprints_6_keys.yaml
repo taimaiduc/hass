@@ -2,15 +2,8 @@ blueprint:
   name: Aqara Opple - Wireless Scene Switch 6 Button
   description: 'Control anything using Aqara Opple six button remote'
   domain: automation
-  input:
-    remote:
-      name: Remote
-      description: Opple remote to use
-      selector:
-        device:
-          integration: MQTT
-          manufacturer: LUMI
-          model: WXCJKG13LM
+  device:
+    integration: mqtt
     
     # ---------------------------- BUTTON TOP LEFT ----------------------------
     button_top_left_single_press:
