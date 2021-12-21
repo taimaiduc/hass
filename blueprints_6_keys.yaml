@@ -8,7 +8,7 @@ blueprint:
       description: Opple remote to use
       selector:
         device:
-          integration: zha
+          integration: mqtt
           manufacturer: LUMI
           model: lumi.remote.b686opcn01
     
