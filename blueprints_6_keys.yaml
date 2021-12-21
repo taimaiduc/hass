@@ -3,14 +3,13 @@ blueprint:
   description: 'Control anything using Aqara Opple six button remote'
   domain: automation
   input:
-    remote:
-      name: Remote
-      description: Opple remote to use
+    motion_sensor:
+      name: Motion Sensor
+      description: This sensor will be synchronized with the light.
       selector:
-        device:
-          integration: mqtt
-          manufacturer: Xiaomi
-          model: lumi.remote.b686opcn01
+        entity:
+          domain: binary_sensor
+          device_class: motion
     
     # ---------------------------- BUTTON TOP LEFT ----------------------------
     button_top_left_single_press:
